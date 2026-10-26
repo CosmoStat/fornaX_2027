@@ -1,0 +1,12 @@
+# Jekyll settings for GitHub Pages.
+# index.html has no front matter, so Jekyll copies it as-is.
+title: FornaX collaboration meeting 2027
+description: FornaX collaboration meeting 2027, Salamanca, 5-9 April 2027.
+url: "https://cosmostat.github.io"
+baseurl: "/fornaX_2027"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - README.md

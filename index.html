@@ -20,7 +20,7 @@
     --fx-text: #1f2430;
     --fx-muted: #5f6878;
     --fx-line: #e3dcd4;
-    --fx-soft: #f7f2ec;
+    --fx-soft: #ece2cc;            /* boxes and tags: a shade darker than the page */
     --fx-papyrus: #ece0c6;         /* key-facts box: parchment */
     --fx-papyrus-line: #d3c19d;
     font-family: "Source Sans Pro", "Source Sans 3", system-ui, sans-serif;
@@ -235,14 +235,18 @@
   /* Frame around the note for terminals 1, 2 and 3 and its photos */
   .fx-note-box {
     margin: 8px 0 20px; padding: 14px 16px 16px;
-    border: 1px solid var(--fx-line); border-radius: 10px; background: var(--fx-soft);
+    border: 1px solid var(--fx-papyrus-line); border-radius: 10px; background: var(--fx-soft);
   }
   .fx-note-box .fx-footnote { margin: 0 0 12px; }
   .fx-note-box .fx-gallery { margin: 0; }
 
   /* Recommended visits list */
-  .fx-visits { list-style: none; margin: 4px 0 0; padding: 0; border-top: 1px solid var(--fx-line); }
-  .fx-visits li { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--fx-line); }
+  .fx-visits {
+    list-style: none; margin: 8px 0 20px; padding: 0 16px;
+    border: 1px solid var(--fx-papyrus-line); border-radius: 10px; background: var(--fx-soft);
+  }
+  .fx-visits li { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--fx-papyrus-line); }
+  .fx-visits > li:last-child { border-bottom: 0; }
   .fx-visit-icon { font-size: 1.6rem; line-height: 1.2; flex: none; width: 2rem; text-align: center; }
   .fx-visits p { margin: 0; }
   /* Numbers shared by the list and the map pins */
@@ -280,7 +284,7 @@
   .fx-visits .fx-find { margin-top: 8px; }
   .fx-find-tag {
     display: inline-block; margin-right: 6px; padding: 1px 8px;
-    border-radius: 999px; background: var(--fx-soft); border: 1px solid var(--fx-line);
+    border-radius: 999px; background: var(--fx-soft); border: 1px solid var(--fx-papyrus-line);
     font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--fx-primary);
   }
   .fx-visits .fx-visit-name a:hover { text-decoration: underline; text-underline-offset: 3px; }

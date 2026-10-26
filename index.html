@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FornaX collaboration meeting 2027</title>
+<meta name="description" content="FornaX collaboration meeting 2027, Salamanca, 5-9 April 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* Everything is scoped under .fx-meeting, so the <style> + <div class="fx-meeting">
+     block can also be pasted into a WordPress "Custom HTML" block on fornax.cosmostat.org. */
+  .fx-meeting {
+    /* One accent colour: the red ochre (almagre) of the vítores painted on Salamanca's walls */
+    --fx-almagre: #9a2f22;
+    --fx-slate: #4a5569;
+    --fx-accent: var(--fx-almagre);    /* lines and decoration */
+    --fx-primary: var(--fx-almagre);   /* links, labels, buttons */
+    --fx-text: #1f2430;
+    --fx-muted: #5f6878;
+    --fx-line: #e3dcd4;
+    --fx-soft: #f7f2ec;
+    font-family: "Source Sans Pro", "Source Sans 3", system-ui, sans-serif;
+    color: var(--fx-text);
+    line-height: 1.6;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 16px 48px;
+  }
+  /* overflow-x: clip stops the full-width landing banner from causing a sideways scrollbar */
+  body { margin: 0; background: #ffffff; overflow-x: clip; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  .fx-meeting *, .fx-meeting *::before, .fx-meeting *::after { box-sizing: border-box; }
+  /* Title and headers use Vítor, the University of Salamanca's official font based on its painted
+     vítores (2024 version by ja!diseño, free download from sac.usal.es/tipografia-vitor) */
+  @font-face {
+    font-family: "Vitor";
+    src: url("fonts/Vitor.otf") format("opentype");
+    font-display: swap;
+  }
+  .fx-meeting h1, .fx-meeting h2, .fx-meeting h3 {
+    font-family: "Vitor", Georgia, serif;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: .03em;
+    margin: 0;
+  }
+  .fx-section h2, .fx-section h3 { color: var(--fx-almagre); }
+  /* Thin black outline around the red letters, echoing the title on the landing banner */
+  .fx-section h2, .fx-section h3 { paint-order: stroke fill; }
+  .fx-section h2 { -webkit-text-stroke: 1.5px #000; }
+  .fx-section h3 { -webkit-text-stroke: 1px #000; }
+
+  /* Hero */
+  /* Landing banner: fills the whole first screen, edge to edge; scroll or use the buttons to reach the sections */
+  .fx-hero {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: 56px 32px 96px;
+    color: #fff;
+    text-align: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex; flex-direction: column; justify-content: center;
+    text-shadow: 0 2px 12px rgba(0,0,0,.6);
+    /* Dark tint keeps the text readable over the photo; darker at the bottom where the pavement is lighter. */
+    background:
+      linear-gradient(to bottom, rgba(30,35,46,.40) 0%, rgba(30,35,46,.20) 40%, rgba(30,35,46,.78) 100%),
+      #2a303c url("imgs/front_new_wide.jpg") center 40% / cover no-repeat;
+  }
+  /* Tall screens (phones): use the full portrait photo so the town hall isn't cropped at the sides */
+  @media (orientation: portrait) {
+    .fx-hero {
+      background:
+        linear-gradient(to bottom, rgba(30,35,46,.40) 0%, rgba(30,35,46,.20) 40%, rgba(30,35,46,.78) 100%),
+        #2a303c url("imgs/front_new_tall.jpg") center 35% / cover no-repeat;
+    }
+  }
+  .fx-hero h1 { font-size: clamp(2.5rem, 7vw, 5rem); line-height: 1.1; }
+  /* Title and subtitle in white, with a thin black outline and a soft dark halo so they stand out from the photo */
+  .fx-hero h1, .fx-hero .fx-sub {
+    color: #fff;
+    -webkit-text-stroke: 3px #000;   /* fixed width, so the big title gets the same fine outline as the subtitle */
+    paint-order: stroke fill;
+    text-shadow:
+      0 0 2px rgba(0,0,0,.9),
+      0 0 5px rgba(0,0,0,.8),
+      0 0 10px rgba(0,0,0,.6),
+      0 2px 16px rgba(0,0,0,.5);
+  }
+  .fx-hero .fx-sub {
+    margin-top: 18px;
+    font-size: clamp(1.4rem, 3.6vw, 2.2rem);
+    letter-spacing: .02em;
+  }
+  .fx-nav {
+    display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+    margin-top: 28px;
+  }
+  .fx-btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid #fff;
+    color: #fff;
+    background: rgba(0,0,0,.5);
+    text-shadow: none;
+  }
+  .fx-btn:hover, .fx-btn:focus-visible { background: #fff; color: var(--fx-primary); }
+  /* Bouncing arrow at the bottom of the landing banner */
+  .fx-scroll {
+    position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    color: #fff; text-decoration: none; text-shadow: none;
+    font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; opacity: .9;
+  }
+  .fx-scroll:hover, .fx-scroll:focus-visible { opacity: 1; }
+  .fx-scroll svg { width: 34px; height: 34px; filter: drop-shadow(0 1px 4px rgba(0,0,0,.6)); }
+  @media (prefers-reduced-motion: no-preference) {
+    .fx-scroll svg { animation: fx-bounce 2s ease-in-out infinite; }
+  }
+  @keyframes fx-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+  /* Front page: subtitle and section buttons in the Vítor lettering too */
+  .fx-hero .fx-sub, .fx-nav .fx-btn { font-family: "Vitor", Georgia, serif; font-weight: 400; }
+  .fx-nav .fx-btn { font-size: 1.1rem; letter-spacing: .03em; }
+  /* Same thin black outline as the title, scaled down for the smaller button text */
+  .fx-nav .fx-btn {
+    -webkit-text-stroke: 1.5px #000;
+    paint-order: stroke fill;
+    text-shadow: 0 0 2px rgba(0,0,0,.8), 0 0 6px rgba(0,0,0,.5);
+  }
+  .fx-nav .fx-btn:hover, .fx-nav .fx-btn:focus-visible { -webkit-text-stroke: 0; text-shadow: none; }
+
+  /* Sections */
+  .fx-section { margin-top: 48px; scroll-margin-top: 24px; }
+  .fx-section > h2 {
+    font-size: 2.1rem;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--fx-almagre);
+    margin-bottom: 20px;
+  }
+  .fx-section h3 { font-size: 1.4rem; margin: 24px 0 8px; }
+  .fx-section p { margin: 0 0 12px; }
+  .fx-section a { color: var(--fx-primary); }
+  .fx-list { margin: 0 0 14px; padding-left: 1.3em; }
+  .fx-list li { margin: 4px 0; }
+  .fx-list li::marker { color: var(--fx-almagre); }
+  .fx-list ul { margin: 4px 0 6px; padding-left: 1.2em; color: var(--fx-muted); }
+
+  /* Key facts: a sandstone plaque echoing the vítor signs, with values in the Vítor lettering */
+  .fx-facts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 8px 0 16px;
+    background: var(--fx-soft);
+    border: 1px solid var(--fx-line);
+    border-top: 3px solid var(--fx-almagre);
+    border-radius: 6px;
+  }
+  .fx-fact { padding: 22px 14px 20px; text-align: center; }
+  .fx-fact + .fx-fact { border-left: 1px solid var(--fx-line); }
+  /* Full-width bottom row of the box: who can attend */
+  .fx-fact.fx-fact-wide { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--fx-line); padding: 16px 20px 18px; }
+  .fx-fact .fx-open-note { margin-top: 8px; font-size: 1.15rem; line-height: 1.5; }
+  .fx-fact .fx-join { display: block; margin-top: 4px; font-size: .95rem; color: var(--fx-muted); }
+  .fx-fact dt {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: "Vitor", Georgia, serif; font-weight: 400;
+    font-size: 1rem; letter-spacing: .08em;
+    color: var(--fx-muted);
+  }
+  .fx-fact dt svg { width: 18px; height: 18px; flex: none; color: var(--fx-almagre); }
+  .fx-fact dd { margin: 10px 0 0; }
+  .fx-fact .fx-big {
+    display: block;
+    font-family: "Vitor", Georgia, serif;
+    font-size: 1.75rem; line-height: 1.15; letter-spacing: .02em; color: var(--fx-almagre);
+    -webkit-text-stroke: 1px #000;   /* same thin outline as the section headers */
+    paint-order: stroke fill;
+  }
+  .fx-fact a.fx-big { text-decoration: none; }
+  .fx-fact a.fx-big:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .fx-fact .fx-small {
+    display: block; margin-top: 6px;
+    font-family: "Vitor", Georgia, serif; letter-spacing: .03em;
+    /* Sized so "Registration on Monday evening" stays on one line in its column */
+    font-size: min(.95rem, calc(1.85vw - 2.5px));
+    color: var(--fx-muted);
+  }
+  @media (max-width: 700px) {
+    .fx-facts { grid-template-columns: 1fr; }
+    .fx-fact { padding: 18px 16px; }
+    .fx-fact .fx-small { font-size: .95rem; }
+    .fx-fact + .fx-fact { border-left: 0; border-top: 1px solid var(--fx-line); }
+  }
+
+  .fx-table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; }
+  .fx-table th, .fx-table td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--fx-line); vertical-align: top; }
+  .fx-table th { width: 40%; font-weight: 600; }
+
+  .fx-tbc { color: var(--fx-muted); font-style: italic; }
+
+  /* Organisation: LOC and SOC side by side, stacked on narrow screens */
+  .fx-committees { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 8px 0 16px; }
+  .fx-committee h4, .fx-subhead {
+    margin: 0 0 6px; padding-bottom: 6px; border-bottom: 1px solid var(--fx-almagre);
+    font-family: "Vitor", Georgia, serif; font-weight: 400;
+    font-size: 1.1rem; letter-spacing: .04em; color: var(--fx-muted);
+  }
+  .fx-committee ul { list-style: none; margin: 0; padding: 0; }
+  .fx-committee li { padding: 4px 0; }
+  .fx-contact { margin: 8px 0 16px; }
+  @media (max-width: 560px) { .fx-committees { grid-template-columns: 1fr; } }
+  .fx-subhead { margin-top: 16px; margin-bottom: 8px; }
+  /* Collapsible travel directions: closed by default, click the heading to open */
+  .fx-fold > summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; }
+  .fx-fold > summary::-webkit-details-marker { display: none; }
+  .fx-fold > summary::before { content: "\25B8"; color: var(--fx-almagre); transition: transform .2s; }
+  .fx-fold[open] > summary::before { transform: rotate(90deg); }
+  .fx-fold > summary:hover { color: var(--fx-almagre); }
+  .fx-fn-ref { text-decoration: none; margin-left: 1px; }
+  .fx-fn-ref, .fx-fn-mark { color: var(--fx-almagre); font-weight: 600; }
+  .fx-footnote { margin: 4px 0 16px; font-size: .9rem; color: var(--fx-muted); }
+  .fx-footnote strong { color: var(--fx-text); }
+  /* Frame around the note for terminals 1, 2 and 3 and its photos */
+  .fx-note-box {
+    margin: 8px 0 20px; padding: 14px 16px 16px;
+    border: 1px solid var(--fx-line); border-radius: 10px; background: var(--fx-soft);
+  }
+  .fx-note-box .fx-footnote { margin: 0 0 12px; }
+  .fx-note-box .fx-gallery { margin: 0; }
+
+  /* Recommended visits list */
+  .fx-visits { list-style: none; margin: 4px 0 0; padding: 0; border-top: 1px solid var(--fx-line); }
+  .fx-visits li { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--fx-line); }
+  .fx-visit-icon { font-size: 1.6rem; line-height: 1.2; flex: none; width: 2rem; text-align: center; }
+  .fx-visits p { margin: 0; }
+  /* Numbers shared by the list and the map pins */
+  .fx-visits { counter-reset: visit; }
+  .fx-visits > li { counter-increment: visit; }
+  /* Large numeral in the left column (01, 02, ...), in the Vítor lettering like the section headers */
+  .fx-visits > li::before {
+    content: counter(visit, decimal-leading-zero);
+    flex: none; width: 2.8rem;
+    font-family: "Vitor", Georgia, serif;
+    font-size: 2rem; line-height: 1; color: var(--fx-almagre);
+    -webkit-text-stroke: 1px #000;
+    paint-order: stroke fill;
+    padding-top: 2px;
+  }
+  /* Map pins and key, matching the list numerals */
+  .fx-map-key, .fx-pin {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: #fff; color: var(--fx-almagre); border: 2px solid var(--fx-accent);
+    font: 400 1rem/1 "Vitor", Georgia, serif;
+  }
+  .fx-pin { box-shadow: 0 1px 5px rgba(0,0,0,.35); }
+  .fx-map-key { width: 20px; height: 20px; font-size: .75rem; vertical-align: 1px; border-width: 1.5px; }
+  .fx-map-key-venue, .fx-pin-venue { background: var(--fx-accent); color: #fff; border-color: #fff; }
+  .fx-pin-venue { width: 34px; height: 34px; font-size: 1.1rem; }
+  .fx-map .leaflet-popup-content { font: .95rem/1.4 "Source Sans 3", "Source Sans Pro", sans-serif; margin: 10px 14px; }
+  .fx-visits .fx-visit-name {
+    font-family: "Vitor", Georgia, serif; font-size: 1.3rem; letter-spacing: .02em; margin-bottom: 4px;
+    -webkit-text-stroke: 1px #000;   /* same thin outline as the numerals and section headers */
+    paint-order: stroke fill;
+  }
+  .fx-visits .fx-visit-name a { text-decoration: none; }
+  .fx-visits .fx-visit-name a::after { content: " \2197"; font-family: "Source Sans 3", sans-serif; font-size: .8em; -webkit-text-stroke: 0; }
+  .fx-visits .fx-find { margin-top: 8px; }
+  .fx-find-tag {
+    display: inline-block; margin-right: 6px; padding: 1px 8px;
+    border-radius: 999px; background: var(--fx-soft); border: 1px solid var(--fx-line);
+    font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--fx-primary);
+  }
+  .fx-visits .fx-visit-name a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .fx-route { margin: 0 0 8px; padding-left: 1.3em; }
+  .fx-route li { margin: 4px 0; }
+  .fx-route-details { margin: 6px 0 10px; padding-left: 1.1em; list-style: disc; color: var(--fx-muted); font-size: .95rem; }
+  .fx-route-details li { margin: 2px 0; }
+  .fx-route-details strong { color: var(--fx-text); }
+
+  /* City photo and venue map */
+  .fx-figure { margin: 0 0 20px; }
+  .fx-figure img {
+    display: block; width: 100%;
+    aspect-ratio: 16 / 7; object-fit: cover; object-position: center 60%;
+    border-radius: 10px;
+  }
+  .fx-figure figcaption, .fx-map-note { font-size: .85rem; color: var(--fx-muted); margin-top: 6px; }
+  .fx-gallery {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;
+    margin: 0 0 20px;
+  }
+  .fx-gallery figure { margin: 0; }
+  .fx-gallery img {
+    display: block; width: 100%;
+    aspect-ratio: 4 / 3; object-fit: cover;
+    border-radius: 10px;
+  }
+  .fx-gallery figcaption { font-size: .85rem; color: var(--fx-muted); margin-top: 6px; }
+  /* Shuttle-bus photos: keep each image's own shape so the wide sign isn't cropped */
+  .fx-gallery.fx-gallery-natural { grid-template-columns: 3fr 2fr; align-items: end; }
+  .fx-gallery.fx-gallery-natural img { aspect-ratio: auto; object-fit: contain; }
+  @media (max-width: 600px) { .fx-gallery.fx-gallery-natural { grid-template-columns: 1fr; } }
+  /* Venue photo carousel: swipe or scroll natively; buttons and dots are added by the script below */
+  .fx-carousel { position: relative; margin: 8px 0 20px; }
+  /* Excursion: the two options side by side, stacked on narrow screens */
+  .fx-options { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 8px; }
+  /* Sized so both option titles stay on one line; shrinks with the window until the columns stack */
+  .fx-option h3 { margin-top: 0; font-size: min(1.15rem, calc(2.1vw - 1.5px)); }
+  @media (max-width: 640px) { .fx-option h3 { font-size: 1.15rem; } }
+  .fx-option p { margin: 8px 0 0; font-size: .95rem; }
+  .fx-option .fx-carousel { margin: 8px 0 4px; }
+  .fx-option .fx-car-slide img { aspect-ratio: 4 / 3; }
+  .fx-option .fx-car-btn { width: 32px; height: 32px; font-size: 20px; }
+  .fx-option .fx-car-prev { left: 8px; }
+  .fx-option .fx-car-next { right: 8px; }
+  .fx-option .fx-car-dots { margin-top: 8px; }
+  .fx-option .fx-car-slide figcaption { padding: 24px 12px 10px; font-size: .85rem; }
+  @media (max-width: 640px) { .fx-options { grid-template-columns: 1fr; } }
+  .fx-car-track {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    border-radius: 10px; scrollbar-width: none;
+  }
+  .fx-car-track::-webkit-scrollbar { display: none; }
+  .fx-car-track:focus-visible { outline: 2px solid var(--fx-accent); outline-offset: 3px; }
+  .fx-car-slide { flex: 0 0 100%; margin: 0; position: relative; scroll-snap-align: start; }
+  .fx-car-slide img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .fx-car-slide figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    display: flex; justify-content: space-between; gap: 12px;
+    padding: 32px 18px 14px; color: #fff; font-size: .95rem;
+    background: linear-gradient(to top, rgba(30,35,46,.75), rgba(30,35,46,0));
+  }
+  .fx-car-count { opacity: .85; font-variant-numeric: tabular-nums; }
+  .fx-car-btn {
+    display: none;
+    position: absolute; top: calc(50% - 32px); transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 0; background: rgba(255,255,255,.88); color: var(--fx-text);
+    font-size: 28px; line-height: 1; cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+  .fx-car-btn:hover, .fx-car-btn:focus-visible { background: #fff; color: var(--fx-primary); }
+  .fx-car-prev { left: 12px; }
+  .fx-car-next { right: 12px; }
+  .fx-carousel.is-ready .fx-car-btn { display: block; }
+  .fx-car-dots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+  .fx-car-dots button {
+    width: 9px; height: 9px; padding: 0; border-radius: 50%; border: 0; cursor: pointer;
+    background: var(--fx-line);
+  }
+  .fx-car-dots button[aria-current="true"] { background: var(--fx-accent); width: 24px; border-radius: 999px; }
+  @media (max-width: 560px) {
+    .fx-car-slide img { aspect-ratio: 4 / 3; }
+    .fx-car-btn { width: 36px; height: 36px; font-size: 22px; }
+  }
+  .fx-map {
+    display: block; width: 100%; height: 440px; z-index: 0;
+    border: 1px solid var(--fx-line); border-radius: 10px;
+    margin-top: 8px;
+  }
+
+  /* Registration call to action: open row like the key-facts strip */
+  .fx-cta {
+    margin-top: 24px;
+    padding: 20px 0;
+    border-top: 1px solid var(--fx-line);
+    border-bottom: 1px solid var(--fx-line);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .fx-cta p { margin: 0; }
+  .fx-cta .fx-btn { flex: none; }
+  .fx-cta .fx-btn { border-color: var(--fx-primary); background: var(--fx-primary); color: #fff; }
+  .fx-cta .fx-btn:hover, .fx-cta .fx-btn:focus-visible { background: #fff; color: var(--fx-primary); }
+
+  /* Logos: hidden automatically while empty */
+  .fx-logos {
+    display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: center;
+    margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--fx-line);
+  }
+  .fx-logos:empty { display: none; }
+  .fx-logos img { height: 64px; width: auto; max-width: 180px; object-fit: contain; }
+
+  @media (max-width: 560px) {
+    .fx-hero { padding: 40px 20px 96px; }
+    .fx-table th { width: auto; }
+    .fx-table th, .fx-table td { display: block; padding: 6px 0; border: 0; }
+    .fx-table tr { display: block; padding: 8px 0; border-bottom: 1px solid var(--fx-line); }
+  }
+</style>
+</head>
+<body>
+<div class="fx-meeting">
+
+  <header class="fx-hero">
+    <h1>FornaX collaboration meeting 2027</h1>
+    <p class="fx-sub">Salamanca &middot; 5&ndash;9 April</p>
+    <nav class="fx-nav" aria-label="Page sections">
+      <a class="fx-btn" href="#general-information">General Information &amp; Programme</a>
+      <a class="fx-btn" href="#salamanca">The city</a>
+      <a class="fx-btn" href="#excursion">Excursion</a>
+      <a class="fx-btn" href="#registration">Registration</a>
+    </nav>
+    <a class="fx-scroll" href="#general-information">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
+  </header>
+
+  <section class="fx-section" id="general-information">
+    <h2>General Information</h2>
+
+    <dl class="fx-facts">
+      <div class="fx-fact">
+        <dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Dates</dt>
+        <dd><span class="fx-big">5&ndash;9 April 2027</span><span class="fx-small">Registration on Monday evening</span></dd>
+      </div>
+      <div class="fx-fact">
+        <dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>City</dt>
+        <dd><span class="fx-big">Salamanca</span><span class="fx-small">Castilla y Le&oacute;n, Spain</span></dd>
+      </div>
+      <div class="fx-fact">
+        <dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10M19 21V10M9 21v-6h6v6M2 10l10-6 10 6"/></svg>Venue</dt>
+        <dd><a class="fx-big" href="https://facultadfilologia.usal.es/historia/edificios-facultad/">Palacio de Anaya</a><span class="fx-small">Universidad de Salamanca</span></dd>
+      </div>
+      <div class="fx-fact fx-fact-wide">
+        <dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 5.5 4.8"/></svg>Who can join</dt>
+        <dd class="fx-open-note">
+          The collaboration meeting is open to any <strong>Euclid member</strong> who wants to contribute.
+          <span class="fx-join">To join the FornaX collaboration, see <a href="https://fornax.cosmostat.org/?page_id=106">Joining the project</a>.</span>
+        </dd>
+      </div>
+    </dl>
+
+    <h3>About the meeting</h3>
+    <p>
+      The 2027 FornaX collaboration meeting brings together members of the
+      <a href="https://fornax.cosmostat.org/">FornaX</a> XMM-Newton Heritage Programme
+      to review progress on the observations, catalogues and science projects, and to plan the next steps.
+    </p>
+    <p>
+      The 2027 meeting will be particularly important:
+    </p>
+    <ul class="fx-list">
+      <li>By then, we will have been able to compare and scrutinise the DR1 Euclid and XMM detections of clusters and AGN.</li>
+      <li>The first science papers will be well underway.</li>
+      <li>The meeting will take place 1.5 months before the Euclid Consortium conference.</li>
+    </ul>
+    <p>
+      We stress the importance of attending the meeting in person: it makes the discussions much more effective.
+      We are going to be working together for many years, and it is important to forge friendly professional links.
+    </p>
+    <ul class="fx-list">
+      <li>Sessions from 9:00 to 12:00 and from 15:00 to 18:00.</li>
+      <li>Lots of time for small-group discussions.</li>
+      <li>Half a day is devoted to the traditional <a href="#excursion">excursion</a>.</li>
+    </ul>
+
+    <h3>Programme</h3>
+    <p>
+      The main topics are:
+    </p>
+    <ul class="fx-list">
+      <li>Status and evaluation of the XMM and Euclid observations in the FornaX field
+        (the last XMM observations are to be completed by February 2027).</li>
+      <li>The XMM and Euclid catalogues (clusters, AGN, galaxies).</li>
+      <li>Reports from the working groups.</li>
+      <li>Simulations and selection functions.</li>
+      <li>Photometric and spectroscopic redshifts.</li>
+      <li>Tools for source identification and source matching.</li>
+      <li>Shear measurements.</li>
+      <li>Review of ongoing papers, and update of the publication list.</li>
+      <li>Preparation of ground-based follow-up campaigns.</li>
+    </ul>
+    <p class="fx-tbc">A detailed programme will be published closer to the meeting.</p>
+
+    <h3>Venue</h3>
+    <p>
+      The meeting takes place at the
+      <a href="https://facultadfilologia.usal.es/historia/edificios-facultad/">Palacio de Anaya</a>,
+      Facultad de Filología, Universidad de Salamanca.<br>
+      Plaza de Anaya s/n, 37008 Salamanca, Spain.
+    </p>
+    <div class="fx-carousel" data-carousel aria-roledescription="carousel" aria-label="Photos of the Palacio de Anaya">
+      <div class="fx-car-track" tabindex="0">
+        <figure class="fx-car-slide" aria-roledescription="slide" aria-label="1 of 4">
+          <img src="imgs/anaya.jpg" alt="Neoclassical portico of the Palacio de Anaya">
+          <figcaption><span>The façade on Plaza de Anaya</span><span class="fx-car-count">1 / 4</span></figcaption>
+        </figure>
+        <figure class="fx-car-slide" aria-roledescription="slide" aria-label="2 of 4">
+          <img src="imgs/venue3.webp" alt="Two-storey cloister with columns around the stone courtyard of the Palacio de Anaya" loading="lazy">
+          <figcaption><span>The cloister</span><span class="fx-car-count">2 / 4</span></figcaption>
+        </figure>
+        <figure class="fx-car-slide" aria-roledescription="slide" aria-label="3 of 4">
+          <img src="imgs/venue2.jpg" alt="Grand stone staircase guarded by carved lions inside the Palacio de Anaya" loading="lazy">
+          <figcaption><span>The main staircase</span><span class="fx-car-count">3 / 4</span></figcaption>
+        </figure>
+        <figure class="fx-car-slide" aria-roledescription="slide" aria-label="4 of 4">
+          <img src="imgs/venue4.png" alt="Hall with rows of wooden chairs, chandeliers and historic portraits on the walls" loading="lazy">
+          <figcaption><span>One of the palace's halls</span><span class="fx-car-count">4 / 4</span></figcaption>
+        </figure>
+      </div>
+      <button type="button" class="fx-car-btn fx-car-prev" aria-label="Previous photo">&#8249;</button>
+      <button type="button" class="fx-car-btn fx-car-next" aria-label="Next photo">&#8250;</button>
+      <div class="fx-car-dots"></div>
+    </div>
+    <p class="fx-map-note">
+      <a href="#visits-map">See the venue on the map</a>, together with our recommended visits.
+    </p>
+
+    <h3>Travel</h3>
+    <p>
+      The nearest major international airport is Madrid&ndash;Barajas (MAD).
+      From there, the easiest way to reach Salamanca is by train.
+    </p>
+    <details class="fx-fold">
+    <summary class="fx-subhead">Getting to Salamanca by train from Madrid</summary>
+      <ol class="fx-route">
+        <li><strong>Airport Terminal 4<a class="fx-fn-ref" href="#fn-terminals" aria-label="Note on terminals 1, 2 and 3">*</a> &rarr; Madrid-Chamart&iacute;n</strong>: a direct train runs from the station inside T4 to Madrid-Chamart&iacute;n.
+          <ul class="fx-route-details">
+            <li>Take the <strong>Cercan&iacute;as</strong> commuter train (not the metro), <strong>line C-1</strong> (towards Chamart&iacute;n).
+              The Cercan&iacute;as station is on the <strong>underground floor</strong> of T4, just past the entrance to the metro.</li>
+            <li>Get off at <strong>Chamart&iacute;n Clara Campoamor</strong>, the 3rd stop (after Valdebebas and Fuente de la Mora): about <strong>18&nbsp;min</strong>.</li>
+            <li>Trains run about <strong>every 15&nbsp;min</strong>, from around 6:00 (5:46 on weekdays) until about midnight.</li>
+            <li>The airport station has a special fare (airport supplement).
+              See the <a href="https://www.redtransporte.com/madrid/cercanias-renfe/linea-c-1.html">C-1 timetable</a>
+              or <a href="https://www.renfe.com/">renfe.com</a> for current times.</li>
+          </ul>
+        </li>
+        <li><strong>Madrid-Chamart&iacute;n &rarr; Salamanca</strong>: about <strong>1&nbsp;h&nbsp;30&nbsp;min</strong> by fast train.
+          <ul class="fx-route-details">
+            <li>There are typically <strong>more than 10 trains a day</strong>.</li>
+            <li><strong>Most, but not all, of them are fast:</strong> when booking, check that the train type is
+              <strong>AVE</strong> or <strong>Alvia</strong>. Other trains (Media Distancia) take considerably longer.</li>
+            <li>Tickets: <a href="https://www.renfe.com/">renfe.com</a>.</li>
+          </ul>
+        </li>
+      </ol>
+    <div class="fx-note-box">
+    <p class="fx-footnote" id="fn-terminals">
+      <span class="fx-fn-mark">*</span> Arriving at Terminal 1, 2 or 3? These terminals are connected to T4 by a <strong>free shuttle bus</strong>.
+      Follow the yellow <strong>&ldquo;Bus Tr&aacute;nsito / Connecting&rdquo;</strong> signs to the stop, and take the
+      green bus showing <strong>&ldquo;Bus Tr&aacute;nsito T1&nbsp;&rarr;&nbsp;T2&nbsp;&rarr;&nbsp;T3&nbsp;&rarr;&nbsp;T4&rdquo;</strong>.
+    </p>
+    <div class="fx-gallery fx-gallery-natural">
+      <figure>
+        <img src="imgs/signal_bus_transit.jpg" alt="Airport exit sign with the yellow 'Bus Tránsito / Connecting' icon and the T1, T2, T3 terminal labels" loading="lazy">
+        <figcaption>The sign to follow: &ldquo;Bus Tr&aacute;nsito / Connecting&rdquo;.</figcaption>
+      </figure>
+      <figure>
+        <img src="imgs/transit_bus.jpg" alt="Green airport shuttle bus with the display 'Bus Tránsito T1 → T2 → T3 → T4'" loading="lazy">
+        <figcaption>The free shuttle bus between terminals.</figcaption>
+      </figure>
+    </div>
+    </div>
+    </details>
+    <h3>Accommodation</h3>
+    <p class="fx-tbc">
+      A list of recommended hotels will be published. <!-- with the registration form on the
+      <a href="http://fornax.pbworks.com/">FornaX wiki</a>.-->
+    </p>
+
+    <h3>Organisation</h3>
+    <div class="fx-committees">
+      <div class="fx-committee">
+        <h4>Local Organising Committee (LOC)</h4>
+        <ul>
+          <li>Bruno Altieri</li>
+          <li>Virginia Carcelent Aycart</li>
+          <li>Iv&aacute;n Mu&ntilde;oz Rodriguez</li>
+          <li>Tatyana Sabidekova</li>
+        </ul>
+      </div>
+      <div class="fx-committee">
+        <h4>Scientific Organising Committee (SOC)</h4>
+        <ul>
+          <li>Micol Bolzonella</li>
+          <li>Ben Maughan</li>
+          <li>Florian Pacaud</li>
+          <li>St&eacute;phane Paltani</li>
+          <li>Marguerite Pierre</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fx-committee fx-contact">
+      <h4>Contact</h4>
+      <ul>
+        <li>Iv&aacute;n Mu&ntilde;oz Rodriguez &middot; ivan.munozrodriguez <em>at</em> cea.fr</li>
+        <li>Marguerite Pierre &middot; marguerite.pierre <em>at</em> cea.fr</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="fx-section" id="salamanca">
+    <h2>The city</h2>
+
+    <figure class="fx-figure">
+      <img src="imgs/salmanca.jpg" alt="Salamanca's old town and New Cathedral reflected in the Tormes river" loading="lazy">
+      <figcaption>The old town and cathedrals seen from across the Tormes river.</figcaption>
+    </figure>
+
+    <p>
+      Salamanca, in the region of Castilla y León, is home to one of the oldest universities in Europe.
+      Its old town has been a UNESCO World Heritage Site since 1988. It is known for the golden
+      sandstone of its buildings, which gives the city its nickname, <em>La Dorada</em>.
+    </p>
+    <p>
+      The Old and New Cathedrals, the Plaza Mayor, the university's historic buildings and the
+      Roman bridge over the Tormes are all within walking distance of one another.
+      The meeting venue, the Palacio de Anaya, stands on Plaza de Anaya, facing the New Cathedral.
+    </p>
+
+    <h3 id="university">The University of Salamanca</h3>
+
+    <div class="fx-gallery">
+      <figure>
+        <img src="imgs/usal_1_web.jpg" alt="Arcaded courtyard of the Escuelas Menores, with scalloped arches, a stone balustrade and a lawn" loading="lazy">
+        <figcaption>The courtyard of the Escuelas Menores.</figcaption>
+      </figure>
+      <figure>
+        <img src="imgs/usal_2_web.jpg" alt="Patio de Escuelas with the statue of Fray Luis de León in front of the University's carved façade" loading="lazy">
+        <figcaption>Patio de Escuelas and the façade of the Escuelas Mayores.</figcaption>
+      </figure>
+    </div>
+
+    <p>
+      Founded in 1218 by King Alfonso IX of León, the
+      <a href="https://www.usal.es/">University of Salamanca</a> is the oldest university in Spain
+      still in operation. In the 16th century its scholars, known as the School of Salamanca,
+      helped lay the foundations of international law and modern economics.
+    </p>
+    <p>
+      Its historic buildings are a short walk from the venue. The carved Plateresque façade of the
+      Escuelas Mayores faces the Patio de Escuelas, and inside is the University's historic library.
+    </p>
+    <p>
+      The meeting itself takes place in the Palacio de Anaya, an 18th-century neoclassical building
+      that was built for the Colegio Mayor de San Bartolomé and today houses the Faculty of Philology.
+    </p>
+
+    <h3 id="visits">Recommended visits</h3>
+    <details class="fx-fold">
+    <summary class="fx-subhead">Places worth seeing in Salamanca</summary>
+    <ul class="fx-visits">
+      <li data-lat="40.95806" data-lng="-5.66997">
+        <div>
+          <p class="fx-visit-name">The Tormes river and the <a href="https://www.google.com/maps/search/?api=1&amp;query=Puente+Romano+Salamanca">Roman bridge</a></p>
+          <p>Take a walk along the riverbanks and cross the Roman bridge on foot. From the far side you get the
+          classic view of the old town and the cathedrals, like the photo above.</p>
+        </div>
+      </li>
+      <li data-lat="40.9595" data-lng="-5.66686">
+        <div>
+          <p class="fx-visit-name"><a href="https://www.museocasalis.org/">Casa Lis</a></p>
+          <p>The Art Nouveau and Art D&eacute;co museum, in a modernist house with a striking stained-glass
+          fa&ccedil;ade, built on the old city wall above the Tormes river.</p>
+        </div>
+      </li>
+      <li data-lat="40.96011" data-lng="-5.66259">
+        <div>
+          <p class="fx-visit-name"><a href="https://www.google.com/maps/search/?api=1&amp;query=Convento+de+San+Esteban+Salamanca">Convento de San Esteban</a></p>
+          <p>A 16th-century Dominican convent with a spectacular Plateresque fa&ccedil;ade, carved like a
+          giant stone altarpiece, and beautiful cloisters inside. A short walk downhill from the Cathedral.</p>
+        </div>
+      </li>
+      <li data-lat="40.96052" data-lng="-5.66691">
+        <div>
+          <p class="fx-visit-name">The Cathedral and its towers (<a href="https://ieronimus.es/">Ieronimus</a>)</p>
+          <p>Climb the medieval towers of Salamanca Cathedral, with terraces, the bell chamber and a walkway
+          inside the New Cathedral, and views over the whole city. Beautiful both by day and at night,
+          and there are dedicated <strong>night visits</strong>. Entry is limited, so book online.</p>
+          <p class="fx-find"><span class="fx-find-tag">Find</span>
+          <strong>The astronaut</strong>: an astronaut carved in stone among the decorations of the
+          Puerta de Ramos, a side door of the New Cathedral, added during its 1992 restoration.</p>
+          <p class="fx-find"><span class="fx-find-tag">Find</span>
+          <strong>The devil eating ice cream</strong>: on the same door, look for a little horned creature
+          licking an ice-cream cone, another playful addition from the 1992 restoration.</p>
+        </div>
+      </li>
+      <li data-lat="40.96133" data-lng="-5.6672">
+        <div>
+          <p class="fx-visit-name"><a href="https://maps.app.goo.gl/Lf46u6K1mb6VBSnv5">Escuelas Mayores</a></p>
+          <p>The University's historic main building, behind the carved façade on the Patio de Escuelas,
+          with its old lecture halls and historic library.</p>
+          <p class="fx-find"><span class="fx-find-tag">Find</span>
+          <strong>The frog</strong>: a tiny frog hidden somewhere among the carvings of the façade.
+          Tradition says students who spot it will pass their exams.</p>
+        </div>
+      </li>
+      <li data-lat="40.9614" data-lng="-5.66796">
+        <div>
+          <p class="fx-visit-name"><a href="https://maps.app.goo.gl/Fqf9EaosYvTjNavw7">Escuelas Menores</a></p>
+          <p>The University's other historic building, just off the Patio de Escuelas.</p>
+          <p class="fx-find"><span class="fx-find-tag">Find</span>
+          <strong><em>El Cielo de Salamanca</em></strong>: a late 15th-century painted sky showing constellations
+          and signs of the zodiac. It once decorated the vault of the old university library and is now on
+          display here. A must for astronomers!</p>
+        </div>
+      </li>
+      <li data-lat="40.96296" data-lng="-5.66565">
+        <div>
+          <p class="fx-visit-name"><a href="https://www.google.com/maps/search/?api=1&amp;query=Casa+de+las+Conchas+Salamanca">Casa de las Conchas</a></p>
+          <p>A late 15th-century palace whose fa&ccedil;ade is covered in hundreds of carved scallop shells.
+          Today it is a public library, so you can step inside to see its Gothic courtyard.
+          It stands opposite the Clerec&iacute;a, a few minutes' walk from the Patio de Escuelas.</p>
+        </div>
+      </li>
+      <li data-lat="40.96503" data-lng="-5.66406">
+        <div>
+          <p class="fx-visit-name"><a href="https://www.google.com/maps/search/?api=1&amp;query=Plaza+Mayor+Salamanca">Plaza Mayor</a></p>
+          <p>The heart of the city: an 18th-century Baroque square surrounded by arcades and caf&eacute;s
+          (it is the square in the photo at the top of this page). Come back after dark, when it is lit up.</p>
+        </div>
+      </li>
+      <li data-lat="40.96736" data-lng="-5.66175">
+        <div>
+          <p class="fx-visit-name"><a href="https://www.google.com/maps/search/?api=1&amp;query=Calle+Toro+Salamanca">Calle Toro</a> and <a href="https://www.google.com/maps/search/?api=1&amp;query=Calle+Zamora+Salamanca">Calle Zamora</a></p>
+          <p>The city's main shopping streets, both starting at the Plaza Mayor. Good for a stroll, shops,
+          tapas and caf&eacute;s.</p>
+          <p class="fx-find" data-lat="40.96965" data-lng="-5.66384" data-name="Iglesia de San Marcos"><span class="fx-find-tag">Don't miss</span>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Iglesia+de+San+Marcos+Salamanca"><strong>Iglesia de San Marcos</strong></a>:
+          at the far end of Calle Zamora, a small Romanesque church with an unusual round floor plan.</p>
+        </div>
+      </li>
+    </ul>
+    </details>
+
+    <div id="visits-map" class="fx-map" data-venue-lat="40.96167" data-venue-lng="-5.66515"
+      role="region" aria-label="Map of the venue and recommended visits"></div>
+    <p class="fx-map-note">
+      <span class="fx-map-key fx-map-key-venue">&#9733;</span> The venue, Palacio de Anaya &middot;
+      <span class="fx-map-key">1</span> Numbers match the list above. Click a pin for its name.
+    </p>
+  </section>
+
+  <section class="fx-section" id="excursion">
+    <h2>Excursion</h2>
+
+    <p>
+      As part of the meeting, participants are invited to join an excursion.
+      There are <strong>two possible destinations</strong>: participants will be asked which one they prefer,
+      and <strong>only one of them will take place</strong>.
+    </p>
+
+    <table class="fx-table">
+      <tbody>
+        <tr><th scope="row">Date</th><td>Thursday 8 April 2027</td></tr>
+        <tr><th scope="row">Departure</th><td class="fx-tbc">To be announced</td></tr>
+        <tr><th scope="row">Cost</th><td class="fx-tbc">To be announced</td></tr>
+      </tbody>
+    </table>
+
+    <div class="fx-options">
+    <div class="fx-option">
+    <h3>Option 1: Segovia</h3>
+    <div class="fx-carousel" data-carousel aria-roledescription="carousel" aria-label="Photos of Segovia">
+      <div class="fx-car-track" tabindex="0">
+        <figure class="fx-car-slide" aria-roledescription="slide" aria-label="1 of 3">
+          <img src="imgs/segovia2.jpg" alt="The two-tier arches of Segovia's Roman aqueduct behind a bed of tulips" loading="lazy">
+          <figcaption><span>The Roman aqueduct</span><span class="fx-car-count">1 / 3</span></figcaption>
+        </figure>
+        <figure class="fx-car-slide" aria-roledescription="slide" aria-label="2 of 3">
+          <img src="imgs/segovia3.jpg" alt="Segovia's Gothic cathedral under a blue sky" loading="lazy">
+          <figcaption><span>Segovia Cathedral</span><span class="fx-car-count">2 / 3</span></figcaption>
+        </figure>
+        <figure class="fx-car-slide" aria-roledescription="slide" aria-label="3 of 3">
+          <img src="imgs/segovia1.webp" alt="The Alcázar of Segovia on its rocky outcrop, with the cathedral behind" loading="lazy">
+          <figcaption><span>The Alcázar, with the cathedral behind</span><span class="fx-car-count">3 / 3</span></figcaption>
+        </figure>
+      </div>
+      <button type="button" class="fx-car-btn fx-car-prev" aria-label="Previous photo">&#8249;</button>
+      <button type="button" class="fx-car-btn fx-car-next" aria-label="Next photo">&#8250;</button>
+      <div class="fx-car-dots"></div>
+    </div>
+
+    <p>
+      Segovia's old town and its Roman aqueduct are a UNESCO World Heritage Site.
+      Its best-known sights are the aqueduct, which crosses the city's Plaza del Azoguejo;
+      the Gothic cathedral; and the Alc&aacute;zar, a castle on a rocky outcrop above two rivers.
+    </p>
+
+    </div>
+    <div class="fx-option">
+    <h3>Option 2: La Alberca and Sierra de Francia</h3>
+    <div class="fx-carousel" data-carousel aria-roledescription="carousel" aria-label="Photos of La Alberca and the Sierra de Francia">
+      <div class="fx-car-track" tabindex="0">
+        <figure class="fx-car-slide" aria-roledescription="slide" aria-label="1 of 3">
+          <img src="imgs/batuecas.jpg" alt="Stone cross and fountain in the cobbled main square of La Alberca, surrounded by half-timbered houses with flower-filled balconies" loading="lazy">
+          <figcaption><span>The main square of La Alberca</span><span class="fx-car-count">1 / 3</span></figcaption>
+        </figure>
+        <figure class="fx-car-slide" aria-roledescription="slide" aria-label="2 of 3">
+          <img src="imgs/batuecas2.jpg" alt="Small waterfall on a rocky stream below an old stone arch bridge, among trees" loading="lazy">
+          <figcaption><span>A stream in Las Batuecas valley</span><span class="fx-car-count">2 / 3</span></figcaption>
+        </figure>
+        <figure class="fx-car-slide" aria-roledescription="slide" aria-label="3 of 3">
+          <img src="imgs/batuecas3.jpg" alt="Aerial view of the stone sanctuary on the summit of the Peña de Francia, with snowy mountains around" loading="lazy">
+          <figcaption><span>The sanctuary on the Pe&ntilde;a de Francia</span><span class="fx-car-count">3 / 3</span></figcaption>
+        </figure>
+      </div>
+      <button type="button" class="fx-car-btn fx-car-prev" aria-label="Previous photo">&#8249;</button>
+      <button type="button" class="fx-car-btn fx-car-next" aria-label="Next photo">&#8250;</button>
+      <div class="fx-car-dots"></div>
+    </div>
+    <p>
+      The mountains south of Salamanca, part of a UNESCO Biosphere Reserve: forested valleys
+      such as Las Batuecas, and the Pe&ntilde;a de Francia peak with its sanctuary on the summit.
+      La Alberca is a traditional mountain village of stone and half-timbered houses around an arcaded square.
+    </p>
+    </div>
+    </div>
+  </section>
+
+  <section class="fx-section" id="registration">
+    <h2>Registration</h2>
+    <p><strong>Registration is not open yet.</strong> Come back to this page for updates.</p>
+    <!-- 
+    <table class="fx-table">
+      <tbody>
+        <tr><th scope="row">Registration opens</th><td class="fx-tbc">To be announced</td></tr>
+        <tr><th scope="row">Registration deadline</th><td class="fx-tbc">To be announced</td></tr>
+        <tr><th scope="row">Registration fee</th><td class="fx-tbc">To be announced</td></tr>
+        <tr><th scope="row">Abstract / talk submission</th><td class="fx-tbc">To be announced</td></tr>
+      </tbody>
+    </table>
+
+    <div class="fx-cta">-->
+      
+      <!-- When the form is ready, replace "#" with its link and update the text above. 
+      <a class="fx-btn" href="#" aria-disabled="true">Registration form</a>
+    </div>
+    -->
+  </section>
+
+  <!-- Extra logos (e.g. host institute, sponsors). Put the files in imgs/ and add one line per logo:
+       <img src="imgs/usal.png" alt="Universidad de Salamanca">
+       This strip stays hidden until it contains at least one image.
+       Keep the comment outside the div, or :empty will not match. -->
+  <div class="fx-logos"></div>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script>
+  /* Map of the venue and recommended visits. Pins are read from the list (data-lat / data-lng),
+     so adding a place to the list with coordinates adds it to the map. */
+  (function () {
+    var el = document.getElementById('visits-map');
+    if (!el || !window.L) return;
+    var map = L.map(el, { scrollWheelZoom: false, zoomSnap: 0.25 });
+    // Esri street map tiles (no key needed). They also load when the page is opened straight
+    // from a file; OpenStreetMap's and CARTO's free tiles refuse that.
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 19,
+      attribution: 'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors, and the GIS user community'
+    }).addTo(map);
+    function pin(cls, text, size) {
+      return L.divIcon({ className: '', html: '<span class="fx-pin ' + cls + '">' + text + '</span>',
+                         iconSize: [size, size], iconAnchor: [size / 2, size / 2], popupAnchor: [0, -size / 2] });
+    }
+    var points = [];
+    var items = document.querySelectorAll('.fx-visits > li');
+    for (var i = 0; i < items.length; i++) {
+      var places = [items[i]].concat([].slice.call(items[i].querySelectorAll('[data-lat]')));
+      var title = items[i].querySelector('.fx-visit-name');
+      for (var k = 0; k < places.length; k++) {
+        var el2 = places[k];
+        if (!el2.hasAttribute('data-lat')) continue;
+        var ll = [parseFloat(el2.getAttribute('data-lat')), parseFloat(el2.getAttribute('data-lng'))];
+        var name = el2.getAttribute('data-name') || (title ? title.textContent.trim() : '');
+        L.marker(ll, { icon: pin('', String(i + 1), 26), title: name })
+          .bindPopup('<strong>' + (i + 1) + '.</strong> ' + name).addTo(map);
+        points.push(ll);
+      }
+    }
+    var venue = [parseFloat(el.getAttribute('data-venue-lat')), parseFloat(el.getAttribute('data-venue-lng'))];
+    L.marker(venue, { icon: pin('fx-pin-venue', '&#9733;', 38), title: 'Palacio de Anaya', zIndexOffset: 1000 })
+      .bindPopup('<strong>&#9733; Palacio de Anaya</strong><br>Meeting venue').addTo(map);
+    points.push(venue);
+    map.fitBounds(points, { padding: [24, 24] });
+  })();
+  </script>
+  <script>
+  /* Photo carousel: arrow buttons, dots and keyboard arrows. Swiping works without this script. */
+  document.querySelectorAll('.fx-meeting [data-carousel]').forEach(function (car) {
+    var track = car.querySelector('.fx-car-track');
+    var slides = track.children;
+    var dots = car.querySelector('.fx-car-dots');
+    var current = 0;
+    function paint() {
+      for (var j = 0; j < dots.children.length; j++) {
+        dots.children[j].setAttribute('aria-current', j === current ? 'true' : 'false');
+      }
+    }
+    function go(i) {
+      current = (i + slides.length) % slides.length;
+      paint();
+      track.scrollTo({ left: current * track.clientWidth });
+    }
+    for (var i = 0; i < slides.length; i++) {
+      (function (i) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', 'Show photo ' + (i + 1));
+        dot.addEventListener('click', function () { go(i); });
+        dots.appendChild(dot);
+      })(i);
+    }
+    // After a swipe or scroll settles, sync the current photo with what is on screen.
+    var settle;
+    function update() {
+      current = Math.round(track.scrollLeft / track.clientWidth);
+      paint();
+    }
+    car.querySelector('.fx-car-prev').addEventListener('click', function () { go(current - 1); });
+    car.querySelector('.fx-car-next').addEventListener('click', function () { go(current + 1); });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(current + 1); }
+    });
+    track.addEventListener('scroll', function () { clearTimeout(settle); settle = setTimeout(update, 120); });
+    update();
+    car.classList.add('is-ready');
+  });
+  </script>
+
+</div>
+</body>
+</html>

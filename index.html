@@ -21,6 +21,8 @@
     --fx-muted: #5f6878;
     --fx-line: #e3dcd4;
     --fx-soft: #f7f2ec;
+    --fx-papyrus: #ece0c6;         /* key-facts box: parchment */
+    --fx-papyrus-line: #d3c19d;
     font-family: "Source Sans Pro", "Source Sans 3", system-ui, sans-serif;
     color: var(--fx-text);
     line-height: 1.6;
@@ -29,7 +31,7 @@
     padding: 0 16px 48px;
   }
   /* overflow-x: clip stops the full-width landing banner from causing a sideways scrollbar */
-  body { margin: 0; background: #ffffff; overflow-x: clip; }
+  body { margin: 0; background: #fbf8f2; overflow-x: clip; }
   @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
   .fx-meeting *, .fx-meeting *::before, .fx-meeting *::after { box-sizing: border-box; }
   /* Title and headers use Vítor, the University of Salamanca's official font based on its painted
@@ -156,15 +158,19 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin: 8px 0 16px;
-    background: var(--fx-soft);
-    border: 1px solid var(--fx-line);
+    /* Parchment: warm tan, slightly darker towards the edges */
+    background:
+      radial-gradient(ellipse at center, rgba(255,250,235,.45) 0%, rgba(255,250,235,0) 70%),
+      var(--fx-papyrus);
+    border: 1px solid var(--fx-papyrus-line);
     border-top: 3px solid var(--fx-almagre);
     border-radius: 6px;
+    box-shadow: inset 0 0 24px rgba(140,105,50,.18);
   }
   .fx-fact { padding: 22px 14px 20px; text-align: center; }
-  .fx-fact + .fx-fact { border-left: 1px solid var(--fx-line); }
+  .fx-fact + .fx-fact { border-left: 1px solid var(--fx-papyrus-line); }
   /* Full-width bottom row of the box: who can attend */
-  .fx-fact.fx-fact-wide { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--fx-line); padding: 16px 20px 18px; }
+  .fx-fact.fx-fact-wide { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--fx-papyrus-line); padding: 16px 20px 18px; }
   .fx-fact .fx-open-note { margin-top: 8px; font-size: 1.15rem; line-height: 1.5; }
   .fx-fact .fx-join { display: block; margin-top: 4px; font-size: .95rem; color: var(--fx-muted); }
   .fx-fact dt {
@@ -195,7 +201,7 @@
     .fx-facts { grid-template-columns: 1fr; }
     .fx-fact { padding: 18px 16px; }
     .fx-fact .fx-small { font-size: .95rem; }
-    .fx-fact + .fx-fact { border-left: 0; border-top: 1px solid var(--fx-line); }
+    .fx-fact + .fx-fact { border-left: 0; border-top: 1px solid var(--fx-papyrus-line); }
   }
 
   .fx-table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; }
